@@ -21,12 +21,14 @@
         :minH="chart.minH"
         :minW="chart.minW"
       >
-        <component
-          :is="chart.type"
-          :chartData="chart.chartData"
-          :options="chart.options"
-          class="chartComponent"
-        ></component>
+        <div class="chartWrapper">
+          <component
+            :is="chart.type"
+            :chartData="chart.chartData"
+            :options="chart.options"
+            class="chartItem"
+          ></component>
+        </div>
       </grid-item>
     </grid-layout>
   </v-container>
@@ -34,10 +36,17 @@
 
 <script>
 import { GridLayout, GridItem } from "vue-grid-layout"
-import { getClosingData, getCurrentPrice } from "../api"
+import { getClosingData, getCurrentPrice, getPreviousDayPrice } from "../api"
 import LineChart from "../components/LineChart"
 import InfoBox from "../components/InfoBox"
 import Error from "../components/Error"
+import PriceBox from "../components/PriceBox"
+import {
+  generateLineChartDataAndSettings,
+  generateBoxInfoData,
+  generateErrorChartItem,
+  generateBoxPriceData
+} from "../utility"
 
 export default {
   name: "Dashboard",
@@ -46,6 +55,7 @@ export default {
     GridItem,
     LineChart,
     InfoBox,
+    PriceBox,
     Error
   },
 
@@ -58,116 +68,41 @@ export default {
     loaded: false
   }),
   async mounted() {
-    const [closingData, currentPrice] = await Promise.allSettled([
+    const [
+      closingData,
+      currentPrice,
+      previousDayPrice
+    ] = await Promise.allSettled([
       getClosingData(),
-      getCurrentPrice()
+      getCurrentPrice(),
+      getPreviousDayPrice()
     ])
     this.chartItems = [
       this.generateChartComponentData(closingData, "0"),
-      this.generateInfoComponentData(currentPrice, "1")
+      this.generateInfoComponentData(currentPrice, "1", "Current Price"),
+      this.generatePriceComponentData(
+        previousDayPrice,
+        "2",
+        "Yesterday's Price"
+      )
     ]
     this.loaded = true
   },
   methods: {
     generateChartComponentData: (data, index) => {
       return data.status === "fulfilled"
-        ? {
-            chartData: {
-              labels: Object.keys(data.value),
-              datasets: [
-                {
-                  label: "2019",
-                  data: Object.values(data.value),
-                  backgroundColor: "rgba(224, 248, 255, 0.4)",
-                  borderColor: "#5cddff",
-                  lineTension: 0,
-                  pointBackgroundColor: "#5cddff"
-                }
-              ]
-            },
-            options: {
-              elements: {
-                point: {
-                  radius: 1
-                }
-              },
-              scales: {
-                xAxes: [
-                  {
-                    stacked: true,
-                    gridLines: { display: true }
-                  }
-                ],
-                yAxes: [
-                  {
-                    ticks: {
-                      stepSize: 1,
-                      callback: function(value, index, values) {
-                        if (value % Math.round(values[0] / 6) == 0) {
-                          return value
-                        } else if (value === 0) {
-                          return value
-                        }
-                      }
-                    }
-                  }
-                ]
-              },
-              maintainAspectRatio: false,
-              legend: {
-                labels: {
-                  boxWidth: 10
-                },
-                position: "top"
-              },
-              animation: {
-                duration: 200,
-                easing: "easeInOutQuart"
-              }
-            },
-            type: "line-chart",
-            x: 0,
-            y: 0,
-            w: 18,
-            h: 11,
-            minW: 5,
-            minH: 11,
-            i: index
-          }
-        : {
-            type: "error",
-            x: 0,
-            y: 0,
-            w: 5,
-            h: 5,
-            minW: 2,
-            minH: 2,
-            i: index
-          }
+        ? generateLineChartDataAndSettings(data.value, index)
+        : generateErrorChartItem(index)
     },
-    generateInfoComponentData: (data, index) => {
+    generateInfoComponentData: (data, index, title) => {
       return data.status === "fulfilled"
-        ? {
-            x: 0,
-            y: 0,
-            w: 5,
-            h: 3,
-            minW: 5,
-            minH: 3,
-            i: index,
-            chartData: data.value,
-            type: "info-box"
-          }
-        : {
-            type: "error",
-            x: 0,
-            y: 0,
-            w: 5,
-            h: 5,
-            minW: 2,
-            minH: 2,
-            i: index
-          }
+        ? generateBoxInfoData(data.value, index, title)
+        : generateErrorChartItem(index)
+    },
+    generatePriceComponentData: (data, index, title) => {
+      return data.status === "fulfilled"
+        ? generateBoxPriceData(data.value, index, title)
+        : generateErrorChartItem(index)
     }
   }
 }
@@ -187,7 +122,12 @@ export default {
 .vue-grid-item .resizing {
   opacity: 0.9;
 }
-.chartComponent {
+
+.chartWrapper {
+  padding: 1em;
+}
+
+.chartItem {
   cursor: default;
 }
 </style>

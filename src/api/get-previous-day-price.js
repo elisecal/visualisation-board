@@ -1,10 +1,10 @@
 import axios from "axios"
 
-const getClosingData = async () => {
+const getPreviousDayPrice = async () => {
   // eslint-disable-next-line no-useless-catch
   try {
     const { data } = await axios("/historical/close.json", {
-      params: { start: "2019-01-01", end: "2019-12-31" }
+      params: { for: "yesterday" }
     })
     return data.bpi
   } catch (ex) {
@@ -12,4 +12,4 @@ const getClosingData = async () => {
   }
 }
 
-export default getClosingData
+export default getPreviousDayPrice
