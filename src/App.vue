@@ -1,56 +1,44 @@
 <template>
   <v-app>
-    <v-app-bar app color="primary" dark>
-      <div class="d-flex align-center">
-        <v-img
-          alt="Vuetify Logo"
-          class="shrink mr-2"
-          contain
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
-          transition="scale-transition"
-          width="40"
-        />
-
-        <v-img
-          alt="Vuetify Name"
-          class="shrink mt-1 hidden-sm-and-down"
-          contain
-          min-width="100"
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
-          width="100"
-        />
-      </div>
-
+    <v-app-bar app color="deep-purple darken-4" dark>
       <v-spacer></v-spacer>
-
-      <v-btn
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-        text
-      >
-        <span class="mr-2">Latest Release</span>
-        <v-icon>mdi-open-in-new</v-icon>
-      </v-btn>
+      <v-app-bar-title default>Bitcoin Dashboard</v-app-bar-title>
+      <v-spacer></v-spacer>
     </v-app-bar>
 
     <v-main>
-      <HelloWorld />
+      <Dashboard />
     </v-main>
+
+    <v-footer app dark>
+      <v-spacer></v-spacer>
+      <div class="d-flex align centre">
+        <v-btn>
+          <span class="mr-2">Powered by Coindesk</span>
+        </v-btn>
+      </div>
+      <v-spacer></v-spacer>
+      <v-btn dark icon
+        ><v-icon size="24px">
+          {{ icon }}
+        </v-icon></v-btn
+      >
+    </v-footer>
   </v-app>
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld"
+import Dashboard from "./components/Dashboard"
 
 export default {
   name: "App",
 
   components: {
-    HelloWorld
+    Dashboard
   },
 
   data: () => ({
-    //
+    icon: "mdi-linkedin"
   })
 }
 </script>
