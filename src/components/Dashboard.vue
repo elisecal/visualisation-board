@@ -20,13 +20,14 @@
         :i="chart.i"
         :minH="chart.minH"
         :minW="chart.minW"
+        :style="getGridItemBackground(chart.type)"
       >
-        <div class="chartWrapper">
+        <div class="chart-wrapper">
           <component
             :is="chart.type"
             :chartData="chart.chartData"
             :options="chart.options"
-            class="chartItem"
+            class="chart-item"
           ></component>
         </div>
       </grid-item>
@@ -103,31 +104,34 @@ export default {
       return data.status === "fulfilled"
         ? generateBoxPriceData(data.value, index, title)
         : generateErrorChartItem(index)
+    },
+    getGridItemBackground(chartType) {
+      return {
+        background: chartType === "line-chart" ? "#FFF" : "#AA4465"
+      }
     }
   }
 }
 </script>
 
 <style scoped>
-.vue-grid-item:not(.vue-grid-placeholder) {
-  background: #ccc;
-  border: 1px solid black;
-}
-
 .vue-grid-item {
-  background: #cce;
   touch-action: none;
+  display: block;
+  border-radius: 6px;
+  color: white;
+  box-shadow: 0 0 40px rgba(226, 226, 226, 0.5);
 }
 
 .vue-grid-item .resizing {
   opacity: 0.9;
 }
 
-.chartWrapper {
+.chart-wrapper {
   padding: 1em;
 }
 
-.chartItem {
+.chart-item {
   cursor: default;
 }
 </style>

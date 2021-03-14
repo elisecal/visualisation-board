@@ -5,10 +5,10 @@ const generateLineChartDataAndSettings = (data, index) => ({
       {
         label: "2019",
         data: Object.values(data),
-        backgroundColor: "rgba(224, 248, 255, 0.4)",
-        borderColor: "#5cddff",
+        backgroundColor: "rgba(67, 27, 40, 0.4)",
+        borderColor: "#AA4465",
         lineTension: 0,
-        pointBackgroundColor: "#5cddff"
+        pointBackgroundColor: "#AA4465"
       }
     ]
   },
@@ -67,8 +67,8 @@ const generateErrorChartItem = index => ({
   x: 0,
   y: 0,
   w: 5,
-  h: 5,
-  minW: 2,
+  h: 3,
+  minW: 4,
   minH: 2,
   i: index
 })

@@ -1,7 +1,7 @@
 <template>
   <div class="info-box">
     <h2>{{ chartData.title }}</h2>
-    <div>
+    <div class="chart-details">
       <span> $ {{ chartData.data }} </span>
     </div>
   </div>
@@ -24,6 +24,10 @@ export default {
 
 <style scoped>
 .info-box h2 {
+  text-align: center;
+}
+
+.info-box .chart-details {
   text-align: center;
 }
 </style>

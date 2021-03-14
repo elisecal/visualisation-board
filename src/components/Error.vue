@@ -1,5 +1,7 @@
 <template>
-  <p>Error box</p>
+  <p>
+    There has been an error while loading this chart. Please try again later..
+  </p>
 </template>
 
 <script>
