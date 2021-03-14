@@ -3,9 +3,9 @@ const generateLineChartDataAndSettings = (data, index) => ({
     labels: Object.keys(data),
     datasets: [
       {
-        label: "2019",
+        label: "",
         data: Object.values(data),
-        backgroundColor: "rgba(100, 140, 172, 0.4)", //rgba(67, 27, 40, 0.4)
+        backgroundColor: "rgba(100, 140, 172, 0.4)",
         borderColor: "#1C4C64",
         lineTension: 0,
         pointBackgroundColor: "#1C4C64"
@@ -13,6 +13,10 @@ const generateLineChartDataAndSettings = (data, index) => ({
     ]
   },
   options: {
+    title: {
+      display: true,
+      text: "Bitcoin Price Index for the Year 2019"
+    },
     elements: {
       point: {
         radius: 1
@@ -21,20 +25,29 @@ const generateLineChartDataAndSettings = (data, index) => ({
     scales: {
       xAxes: [
         {
-          stacked: true,
+          type: "time",
+          time: {
+            unit: "month",
+            displayFormats: {
+              month: "MMM"
+            }
+          },
+          ticks: {
+            source: "auto"
+          },
           gridLines: { display: true }
         }
       ],
       yAxes: [
         {
           ticks: {
-            stepSize: 1,
-            callback: function(value, index, values) {
-              if (value % Math.round(values[0] / 6) == 0) {
-                return value
-              } else if (value === 0) {
-                return value
-              }
+            callback: function(value) {
+              return value.toLocaleString("en-US", {
+                style: "currency",
+                currency: "USD",
+                minimumFractionDigits: 0,
+                maximumFractionDigits: 0
+              })
             }
           }
         }
@@ -42,14 +55,24 @@ const generateLineChartDataAndSettings = (data, index) => ({
     },
     maintainAspectRatio: false,
     legend: {
-      labels: {
-        boxWidth: 10
-      },
-      position: "top"
+      display: false
     },
-    animation: {
-      duration: 200,
-      easing: "easeInOutQuart"
+    tooltips: {
+      intersect: false,
+      mode: "nearest",
+      displayColors: false,
+      titleFontSize: 13,
+      bodyFontSize: 13,
+      callbacks: {
+        label: function(tooltipItem) {
+          return tooltipItem.yLabel.toLocaleString("en-US", {
+            style: "currency",
+            currency: "USD",
+            minimumFractionDigits: 0,
+            maximumFractionDigits: 2
+          })
+        }
+      }
     }
   },
   type: "line-chart",
