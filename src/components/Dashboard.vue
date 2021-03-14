@@ -22,7 +22,7 @@
         :minW="chart.minW"
         :style="getGridItemBackground(chart.type)"
       >
-        <div class="chart-wrapper">
+        <div class="pa-3">
           <component
             :is="chart.type"
             :chartData="chart.chartData"
@@ -97,21 +97,36 @@ export default {
     this.loaded = true
   },
   methods: {
+    /**
+     * If the data retrieval is successful, a line chart component is generated,
+     * otherwise an error component is generated
+     */
     generateChartComponentData: (data, index) => {
       return data.status === "fulfilled"
         ? generateLineChartDataAndSettings(data.value, index)
         : generateErrorChartItem(index)
     },
+    /**
+     * If the data retrieval is successful, a chart depicting current price is generated,
+     * otherwise an error component is generated
+     */
     generateCurrentChartComponentData: (data, index, title) => {
       return data.status === "fulfilled"
         ? generateCurrentChartData(data.value, index, title)
         : generateErrorChartItem(index)
     },
+    /**
+     * If the data retrieval is successful, a chart showing previous day's price is generated,
+     * otherwise an error component is generated
+     */
     generatePrevioustChartComponentData: (data, index, title) => {
       return data.status === "fulfilled"
         ? generatePreviousChartData(data.value, index, title)
         : generateErrorChartItem(index)
     },
+    /**
+     * Background based on chart type is returned
+     */
     getGridItemBackground(chartType) {
       return {
         background: chartType === "line-chart" ? "#FFF" : "#1C4C74"
@@ -132,10 +147,6 @@ export default {
 
 .vue-grid-item .resizing {
   opacity: 0.9;
-}
-
-.chart-wrapper {
-  padding: 1em;
 }
 
 .chart-item {

@@ -1,5 +1,5 @@
 <template>
-  <div class="info-box">
+  <div class="text-center info-box">
     <h2>{{ chartData.title }}</h2>
     <div
       v-for="currency in chartData.data"
@@ -39,14 +39,6 @@ export default {
 </script>
 
 <style scoped>
-.info-box h2 {
-  text-align: center;
-}
-
-.info-box.chart-item {
-  text-align: center;
-}
-
 @media (max-width: 499px) {
   .info-box.chart-item {
     font-size: 0.7rem;

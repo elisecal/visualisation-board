@@ -1,9 +1,7 @@
 <template>
-  <div class="info-box">
+  <div class="text-center info-box">
     <h2>{{ chartData.title }}</h2>
-    <div class="chart-details">
-      <span> $ {{ chartData.data | currencydecimal }} </span>
-    </div>
+    <span> $ {{ chartData.data | currencydecimal }} </span>
   </div>
 </template>
 
@@ -29,14 +27,6 @@ export default {
 </script>
 
 <style scoped>
-.info-box h2 {
-  text-align: center;
-}
-
-.info-box .chart-details {
-  text-align: center;
-}
-
 @media (max-width: 499px) {
   .info-box {
     font-size: 0.7rem;

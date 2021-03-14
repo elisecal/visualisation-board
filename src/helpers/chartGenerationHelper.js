@@ -1,7 +1,13 @@
 /**
- * The following functions create the settings required for creating the grid and chart items
+ * The following functions are helpers to create the settings (props) required for creating the grid items
  */
 
+/**
+ * Generates required settings for a line-chart
+ * @param {object} data Dictionary containing dates and their values (BPI value)
+ * @param {string} index Index of chart in the dashboard
+ * @returns Settings (required props) for a line-chart component
+ */
 const generateLineChartDataAndSettings = (data, index) => ({
   chartData: {
     labels: Object.keys(data),
@@ -97,6 +103,11 @@ const generateLineChartDataAndSettings = (data, index) => ({
   i: index
 })
 
+/**
+ * Generates required settings for a error-chart
+ * @param {string} index Index of chart in the dashboard
+ * @returns Settings (props) for an error-chart component
+ */
 const generateErrorChartItem = index => ({
   type: "error-chart",
   x: 0,
@@ -108,6 +119,14 @@ const generateErrorChartItem = index => ({
   i: index
 })
 
+/**
+ * Generates required settings for a current-price-chart
+ * @param {object} data Dictionary where the key is the currency (EUR/GBP/USD)
+ *                      and the values contain code, description, rate, rate_float, symbol
+ * @param {string} index Index of chart in the dashboard
+ * @param {string} title Title for the chart
+ * @returns Settings (props) for a current-price-chart component
+ */
 const generateCurrentChartData = (data, index, title) => ({
   x: 0,
   y: 0,
@@ -120,6 +139,13 @@ const generateCurrentChartData = (data, index, title) => ({
   type: "current-price-chart"
 })
 
+/**
+ * Generates required settings for a previous-price-chart
+ * @param {object} data Dictionary where the key is the current date and the value is the BPI (in dollars)
+ * @param {string} index Index of chart in the dashboard
+ * @param {string} title Title for the chart
+ * @returns Settings (props) for a previous-price-chart component
+ */
 const generatePreviousChartData = (data, index, title) => ({
   x: 7,
   y: 12,

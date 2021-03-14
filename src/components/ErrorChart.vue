@@ -1,5 +1,5 @@
 <template>
-  <p>
+  <p class="error-box">
     There has been an error while loading this chart. Please try again later..
   </p>
 </template>
@@ -10,4 +10,10 @@ export default {
 }
 </script>
 
-<style></style>
+<style scoped>
+@media (max-width: 499px) {
+  .error-box {
+    font-size: 0.7rem;
+  }
+}
+</style>
