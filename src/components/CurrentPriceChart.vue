@@ -6,8 +6,9 @@
       class="currency"
       :key="currency.code"
     >
-      <strong>{{ currency.description }}</strong
-      >:
+      <strong class="d-none d-sm-inline-flex mr-1"
+        >{{ currency.description }}:
+      </strong>
       <span class="lighten">
         <span v-html="currency.symbol"></span
         >{{ currency.rate_float | currencydecimal }}
@@ -40,5 +41,15 @@ export default {
 <style scoped>
 .info-box h2 {
   text-align: center;
+}
+
+.info-box.chart-item {
+  text-align: center;
+}
+
+@media (max-width: 499px) {
+  .info-box.chart-item {
+    font-size: 0.7rem;
+  }
 }
 </style>

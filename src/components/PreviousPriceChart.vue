@@ -36,4 +36,10 @@ export default {
 .info-box .chart-details {
   text-align: center;
 }
+
+@media (max-width: 499px) {
+  .info-box {
+    font-size: 0.7rem;
+  }
+}
 </style>
