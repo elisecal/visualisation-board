@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-app-bar app color="deep-purple darken-4" dark>
+    <v-app-bar app color="#354551" dark>
       <v-spacer></v-spacer>
       <v-toolbar-title default>Bitcoin Price Index Dashboard</v-toolbar-title>
       <v-spacer></v-spacer>
@@ -34,6 +34,7 @@
 
 <script>
 import Dashboard from "./components/Dashboard"
+import "./assets/styles/App.css"
 
 export default {
   name: "App",

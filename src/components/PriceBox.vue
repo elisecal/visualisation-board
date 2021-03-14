@@ -2,7 +2,7 @@
   <div class="info-box">
     <h2>{{ chartData.title }}</h2>
     <div class="chart-details">
-      <span> $ {{ chartData.data }} </span>
+      <span> $ {{ chartData.data | currencydecimal }} </span>
     </div>
   </div>
 </template>
@@ -17,6 +17,11 @@ export default {
     options: {
       type: Object,
       default: null
+    }
+  },
+  filters: {
+    currencydecimal(value) {
+      return value.toFixed(2)
     }
   }
 }

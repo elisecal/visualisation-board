@@ -5,10 +5,10 @@ const generateLineChartDataAndSettings = (data, index) => ({
       {
         label: "2019",
         data: Object.values(data),
-        backgroundColor: "rgba(67, 27, 40, 0.4)",
-        borderColor: "#AA4465",
+        backgroundColor: "rgba(100, 140, 172, 0.4)", //rgba(67, 27, 40, 0.4)
+        borderColor: "#1C4C64",
         lineTension: 0,
-        pointBackgroundColor: "#AA4465"
+        pointBackgroundColor: "#1C4C64"
       }
     ]
   },

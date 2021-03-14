@@ -107,7 +107,7 @@ export default {
     },
     getGridItemBackground(chartType) {
       return {
-        background: chartType === "line-chart" ? "#FFF" : "#AA4465"
+        background: chartType === "line-chart" ? "#FFF" : "#1C4C74"
       }
     }
   }
