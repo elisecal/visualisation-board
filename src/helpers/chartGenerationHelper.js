@@ -1,3 +1,7 @@
+/**
+ * The following functions create the settings required for creating the grid and chart items
+ */
+
 const generateLineChartDataAndSettings = (data, index) => ({
   chartData: {
     labels: Object.keys(data),

@@ -69,6 +69,7 @@ export default {
     loaded: false
   }),
   async mounted() {
+    //get the information required to generate charts
     const [
       closingData,
       currentPrice,
@@ -78,6 +79,8 @@ export default {
       getCurrentPrice(),
       getPreviousDayPrice()
     ])
+
+    //create the settings for the chart items
     this.chartItems = [
       this.generateChartComponentData(closingData, "0"),
       this.generateCurrentChartComponentData(
