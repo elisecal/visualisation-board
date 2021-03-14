@@ -23,11 +23,14 @@
         </v-btn>
       </div>
       <v-spacer></v-spacer>
-      <v-btn dark icon
-        ><v-icon size="24px">
-          {{ icon }}
-        </v-icon></v-btn
+      <v-btn
+        dark
+        icon
+        href="https://github.com/elisecal/visualisation-board"
+        target="_blank"
       >
+        <font-awesome-icon :icon="['fab', 'github-square']" size="2x" />
+      </v-btn>
     </v-footer>
   </v-app>
 </template>
@@ -35,16 +38,18 @@
 <script>
 import Dashboard from "./components/Dashboard"
 import "./assets/styles/App.css"
+import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome"
 
 export default {
   name: "App",
 
   components: {
-    Dashboard
+    Dashboard,
+    FontAwesomeIcon
   },
 
   data: () => ({
-    icon: "mdi-linkedin"
+    icon: "fa github-square"
   })
 }
 </script>

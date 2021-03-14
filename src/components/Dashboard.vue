@@ -47,7 +47,7 @@ import {
   generateCurrentChartData,
   generateErrorChartItem,
   generatePreviousChartData
-} from "../utility"
+} from "../helpers/chartGenerationHelper"
 
 export default {
   name: "Dashboard",
