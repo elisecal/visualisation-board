@@ -1,24 +1,28 @@
-# visualisation-board
+# Visualisation Board
 
-## Project setup
+A simple vueJS application making use of the Vuetify framework and displays and queries from the [CoinDesk API](https://www.coindesk.com/API).
+
+Some of the technologies used in this project:
+
+- Vue2
+- Axios
+- chart.js and vue-chartjs to render a chart on the page
+- vue-grid-layout to drag and drop/rezise components on the page
+
+## Demo
+
+Demo can be found [here](https://elisecal.github.io/visualisation-board/).
+
+## Local setup
+
 ```
 npm install
 ```
 
-### Compiles and hot-reloads for development
+### To run locally
+
 ```
 npm run serve
 ```
 
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+Open http://localhost:8080 with your browser to see the result.
