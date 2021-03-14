@@ -73,7 +73,7 @@ const generateErrorChartItem = index => ({
   i: index
 })
 
-const generateBoxInfoData = (data, index, title) => ({
+const generateCurrentChartData = (data, index, title) => ({
   x: 0,
   y: 0,
   w: 5,
@@ -82,10 +82,10 @@ const generateBoxInfoData = (data, index, title) => ({
   minH: 4,
   i: index,
   chartData: { data: data, title },
-  type: "info-box"
+  type: "current-price-chart"
 })
 
-const generateBoxPriceData = (data, index, title) => ({
+const generatePreviousChartData = (data, index, title) => ({
   x: 7,
   y: 12,
   w: 5,
@@ -94,12 +94,12 @@ const generateBoxPriceData = (data, index, title) => ({
   minH: 4,
   i: index,
   chartData: { data: Object.values(data)[0], title },
-  type: "price-box"
+  type: "previous-price-chart"
 })
 
 export {
   generateLineChartDataAndSettings,
   generateErrorChartItem,
-  generateBoxInfoData,
-  generateBoxPriceData
+  generateCurrentChartData,
+  generatePreviousChartData
 }

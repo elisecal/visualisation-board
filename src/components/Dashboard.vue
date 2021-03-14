@@ -39,14 +39,14 @@
 import { GridLayout, GridItem } from "vue-grid-layout"
 import { getClosingData, getCurrentPrice, getPreviousDayPrice } from "../api"
 import LineChart from "../components/LineChart"
-import InfoBox from "../components/InfoBox"
+import CurrentPriceChart from "../components/CurrentPriceChart"
+import PreviousPriceChart from "../components/PreviousPriceChart"
 import Error from "../components/Error"
-import PriceBox from "../components/PriceBox"
 import {
   generateLineChartDataAndSettings,
-  generateBoxInfoData,
+  generateCurrentChartData,
   generateErrorChartItem,
-  generateBoxPriceData
+  generatePreviousChartData
 } from "../utility"
 
 export default {
@@ -55,8 +55,8 @@ export default {
     GridLayout,
     GridItem,
     LineChart,
-    InfoBox,
-    PriceBox,
+    CurrentPriceChart,
+    PreviousPriceChart,
     Error
   },
 
@@ -80,8 +80,12 @@ export default {
     ])
     this.chartItems = [
       this.generateChartComponentData(closingData, "0"),
-      this.generateInfoComponentData(currentPrice, "1", "Current Price"),
-      this.generatePriceComponentData(
+      this.generateCurrentChartComponentData(
+        currentPrice,
+        "1",
+        "Current Price"
+      ),
+      this.generatePrevioustChartComponentData(
         previousDayPrice,
         "2",
         "Yesterday's Price"
@@ -95,14 +99,14 @@ export default {
         ? generateLineChartDataAndSettings(data.value, index)
         : generateErrorChartItem(index)
     },
-    generateInfoComponentData: (data, index, title) => {
+    generateCurrentChartComponentData: (data, index, title) => {
       return data.status === "fulfilled"
-        ? generateBoxInfoData(data.value, index, title)
+        ? generateCurrentChartData(data.value, index, title)
         : generateErrorChartItem(index)
     },
-    generatePriceComponentData: (data, index, title) => {
+    generatePrevioustChartComponentData: (data, index, title) => {
       return data.status === "fulfilled"
-        ? generateBoxPriceData(data.value, index, title)
+        ? generatePreviousChartData(data.value, index, title)
         : generateErrorChartItem(index)
     },
     getGridItemBackground(chartType) {
