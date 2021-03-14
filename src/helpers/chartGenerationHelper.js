@@ -35,7 +35,11 @@ const generateLineChartDataAndSettings = (data, index) => ({
           ticks: {
             source: "auto"
           },
-          gridLines: { display: true }
+          gridLines: { display: true },
+          scaleLabel: {
+            display: true,
+            labelString: "2019"
+          }
         }
       ],
       yAxes: [
@@ -49,6 +53,10 @@ const generateLineChartDataAndSettings = (data, index) => ({
                 maximumFractionDigits: 0
               })
             }
+          },
+          scaleLabel: {
+            display: true,
+            labelString: "Bitcoin Price Index as USD ($)"
           }
         }
       ]
