@@ -41,7 +41,7 @@ import { getClosingData, getCurrentPrice, getPreviousDayPrice } from "../api"
 import LineChart from "../components/LineChart"
 import CurrentPriceChart from "../components/CurrentPriceChart"
 import PreviousPriceChart from "../components/PreviousPriceChart"
-import Error from "../components/Error"
+import ErrorChart from "../components/ErrorChart"
 import {
   generateLineChartDataAndSettings,
   generateCurrentChartData,
@@ -57,7 +57,7 @@ export default {
     LineChart,
     CurrentPriceChart,
     PreviousPriceChart,
-    Error
+    ErrorChart
   },
 
   data: () => ({

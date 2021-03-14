@@ -86,7 +86,7 @@ const generateLineChartDataAndSettings = (data, index) => ({
 })
 
 const generateErrorChartItem = index => ({
-  type: "error",
+  type: "error-chart",
   x: 0,
   y: 0,
   w: 5,
